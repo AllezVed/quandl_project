@@ -121,7 +121,7 @@ class Analyzer:
         cols = cols[::2] + cols[1::2]
 
         df2 = df2[cols]
-
+        df2.sort_values(by='annual_return', ascending=False, inplace=True)
         df2['annual_return'] = df2['annual_return'].round(2).astype(str) + '%'
 
         return df2
@@ -140,13 +140,11 @@ class Analyzer:
 
         df['returns'] = df.groupby(['name']).price.pct_change()
 
-        std = df.groupby(['name']).agg({'returns': np.std})
+        sr_ans = df.groupby(['name']).agg({'returns': (np.mean, np.std)})
 
-        mean = df.groupby(['name']).agg({'returns': np.mean})
+        sr_ans['sharpe_ratio'] = sr_ans[('returns', 'mean')].divide(sr_ans[('returns', 'std')]) * np.sqrt(252)
 
-        sr_ans = np.sqrt(252) * mean.divide(std)
-
-        sr_ans.columns = ['sharpe_ratio']
+        sr_ans.drop(columns=[('returns', 'mean'), ('returns', 'std')], inplace=True)
 
         sr_ans.sort_values(by="sharpe_ratio", ascending=False, inplace=True)
 
@@ -198,6 +196,26 @@ if __name__ == "__main__":
 
     analyzer = Analyzer()
 
-    df_res = analyzer.get_sharpe_ratios("CME_ES")
-
+    df_res = analyzer.get_sharpe_ratios("CME_GC")
+    #
     print(df_res)
+    #
+    # df_largest_annual_return = analyzer.get_largest_annual_return("CME_NQ")
+    #
+    # print(df_largest_annual_return)
+    #
+    # df_trailing_1yr_vol = analyzer.get_trailing_1yr_vol("CME_CL")
+    #
+    # print(df_trailing_1yr_vol)
+    #
+    # df_annualized_vol = analyzer.get_annual_vol("CME_NG")
+    #
+    # print(df_annualized_vol)
+    #
+    # df_single_day = analyzer.get_largest_single_day_return("CME_GC")
+    #
+    # print(df_single_day)
+
+    # analyzer.chart_contracts("CME_GC")
+
+    # analyzer.chart_contract("CME_ES3")
