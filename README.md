@@ -30,7 +30,7 @@ Activate the new environment:
 
 
 ## Project running instructions
-1. In `config.py`, set the value of  `db.username` to `root` and `db.password` to the password you entered while installing MySQL server 
+1. In `config.py`, set the value of  `db_username` to `root` and `db_password` to the password you entered while installing MySQL server 
 2. To create the database and table schema run db_utils.py using `python db_utils.py` from the terminal in the project directory
 3. To fetch the data and store the data in the database table run utils.py using `python utils.py` from the terminal in the project directory.
 4. To test the functionality of the different functions you can call the analysis functions in the `if __name__ == __main__` block in `app.py` and then run the script using `python app.py`
