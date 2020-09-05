@@ -52,6 +52,7 @@ dependencies:
   - pillow=7.2.0=py38ha54b6ba_0
   - pip=20.2.2=py38_0
   - pycparser=2.20=py_2
+  - pymysql=0.9.2=py38_0
   - pyopenssl=19.1.0=py_1
   - pyparsing=2.4.7=py_0
   - pysocks=1.7.1=py38_1
