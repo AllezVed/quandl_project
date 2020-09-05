@@ -153,7 +153,11 @@ class Analyzer:
         return sr_ans
 
     def chart_contracts(self, contract_type):
-
+        """
+        Charts every commodity of the specified contract_type in one plot and saves the image in ./images/
+        :param contract_type: Specified contract root
+        :return: None
+        """
 
         engine, query = generate_sql_query(contract_type)
 
@@ -169,6 +173,11 @@ class Analyzer:
 
 
     def chart_contract(self, code_name):
+        """
+        Charts the series specified.
+        :param code_name: series/contract name
+        :return: None
+        """
 
         engine, query = generate_sql_query(code_name, singular=True)
 
@@ -189,6 +198,6 @@ if __name__ == "__main__":
 
     analyzer = Analyzer()
 
-    ann_vol = analyzer.chart_contracts("CME_ES")
+    df_res = analyzer.get_sharpe_ratios("CME_ES")
 
-    print(ann_vol)
+    print(df_res)
