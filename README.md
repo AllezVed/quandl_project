@@ -9,15 +9,15 @@ The script requires python3 and anaconda to execute successfully. To install pyt
 
 Clone the git repo using:
 
-git clone https://github.com/AllezVed/quandl_project.git
+`git clone https://github.com/AllezVed/quandl_project.git`
 
 Navigate to the repo directory (/quandl_project ) from terminal and create the conda environment from the environment.yml file using the following command
 
-conda env create -f environment.yml
+`conda env create -f environment.yml`
 
 Activate the new environment:
-conda activate ai_env on Linux/MacOS
-activate ai_env on Windows
+`conda activate athanor_env on Linux/MacOS`
+`activate athanor_env on Windows`
 
 ## MySQL Setup
 
