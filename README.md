@@ -37,3 +37,8 @@ Activate the new environment:
 5. The charting results are stored in `/images/<contract_name>.png`
 6. Results for the non-charting functions are returned as dataframes and printed
 
+
+## Bonus question
+Q.) Suppose you are processing the Sharpe Ratio calculation for 10,000 securities, rolling for each 3 months (66 business days). So the output of this calculation will be a series of number, like a big table, one axis is dates, the other axis is security names. Please describe how will you make the function run efficiently (you can describe it in human language or pseudo code, or both)
+
+Ans) Using `pandas.rolling` object is the most efficient way of computing rolling window calculations because we can optimize rolling windows by removing last element and adding next one instead of computing the whole window again which is what the object computes. Once the rolling window is computed the same calculations done in `get_sharpe_ratios` in `app.py` would apply. Since all the computations are vectorized this would be the most efficient implementation available with native pandas. Other optimizations could be using numba to optimize the calculations.
